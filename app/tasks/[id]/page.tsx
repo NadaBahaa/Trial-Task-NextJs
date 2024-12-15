@@ -9,8 +9,10 @@ interface Task {
 
 const TaskDetails = async ({ params }: { params: { id: string } }) => {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    const response = await fetch(`${baseUrl}/tasks/${params?.id}`);
-    
+    const { id } = await params;
+
+    const response = await fetch(`${baseUrl}/tasks/${id}`);
+
     if (!response.ok) {
         return <p>Task not found.</p>;
     }
